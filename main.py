@@ -17,21 +17,14 @@ def main():
         print('\nFlags available: "--verbose"')
         sys.exit(1)
 
-    load_dotenv()
-
-    
+    load_dotenv()    
 
     user_prompt = " ".join(args)
     api_key = os.environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
     messages = [
         types.Content(role="user", parts=[types.Part(text=user_prompt)]),
-    ]    
-
-    response = client.models.generate_content(
-        model="gemini-2.0-flash-001",
-        contents=messages
-    )
+    ]
 
     generate_response(client, messages)
 
