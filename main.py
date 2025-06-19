@@ -6,17 +6,20 @@ from google.genai import types
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("No arguments provided.")
-        print('\nUsage: python3 main.py "What is the meaning of life?"')
-        sys.exit(1)
-
-    load_dotenv()
-
     args = []
     for arg in sys.argv[1:]:
         if not arg.startswith("--"):
             args.append(arg)
+
+    if len(args) < 1:
+        print("No arguments provided.")
+        print('\nUsage: python3 main.py "What is the meaning of life?"')
+        print('\nFlags available: "--verbose"')
+        sys.exit(1)
+
+    load_dotenv()
+
+    
 
     user_prompt = " ".join(args)
     api_key = os.environ.get("GEMINI_API_KEY")
