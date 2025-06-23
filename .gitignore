@@ -1,3 +1,6 @@
 venv/
 .env
 calculator/
+__pycache__/
+**/__pycache__/
+*.pyc
