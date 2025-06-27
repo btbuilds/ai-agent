@@ -13,10 +13,12 @@ def get_file_content(working_directory, file_path):
     
     try:
         with open(file, "r") as f:
-            file_content_string = f.read()
-            if len(file_content_string) > MAX_CHARS:
-                return file_content_string[:MAX_CHARS] + f'\n[...File "{file_path}" truncated at {MAX_CHARS} characters]'
-        return file_content_string
+            content = f.read(MAX_CHARS)
+            if os.path.getsize(file) > MAX_CHARS:
+                content += (
+                    f'[...File "{file_path}" truncated at {MAX_CHARS} characters]'
+                )
+        return content
     except Exception as e:
         return f"Error: {e}"
     
