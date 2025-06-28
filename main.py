@@ -87,6 +87,8 @@ def generate_response(client, messages, verbose):
 
     if not function_responses:
         raise Exception("no function responses generated, exiting.")
+    
+    messages.append(types.Content(role="tool", parts=function_responses))
 
 
 if __name__ == "__main__":
